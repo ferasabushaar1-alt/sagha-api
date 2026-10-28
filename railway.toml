@@ -1,0 +1,13 @@
+# Railway service. Set the service root directory to `api/`.
+# Attach a volume mounted at /data, then set SQLITE_PATH=/data/sagha.db
+# and SAGHA_DATA_DIR=/data. One replica only: the file has one writer.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 30
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 5

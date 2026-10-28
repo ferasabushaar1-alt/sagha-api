@@ -1,0 +1,36 @@
+# Render blueprint. Set the service root to this `api/` directory,
+# or point Render at this file after choosing Root Directory = api.
+services:
+  - type: web
+    name: sagha-api
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    disk:
+      name: sagha-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SQLITE_PATH
+        value: /data/sagha.db
+      - key: SAGHA_DATA_DIR
+        value: /data
+      - key: JWT_SECRET
+        generateValue: true
+      - key: JWT_EXPIRES_IN
+        value: 12h
+      - key: CORS_ORIGIN
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_FROM
+        sync: false

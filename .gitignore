@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.env
+data/
+private/
+*.db
+*.db-*
+drizzle/meta/
+*.log
